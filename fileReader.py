@@ -7,6 +7,7 @@ from pprint import pprint
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 
+
 sia = SentimentIntensityAnalyzer()
 result = []
 
@@ -39,3 +40,6 @@ pprint (result[:4], width = 500)
 #    result.append(ss)
 
 #pprint(result[:1],width=100)
+
+df = pd.DataFrame.from_records(results)
+df.head()

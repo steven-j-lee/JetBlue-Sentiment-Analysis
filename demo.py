@@ -42,4 +42,4 @@ for w in tokenized_text:
         no_stopwords_sentence.append(w)
 
 print("Tokenized Sentence: ", tokenized_text)
-print("Filtered Sentence: ", no_stopwords_sentence)
+print("Filtered Sentence: ", no_stopwx`ords_sentence)
