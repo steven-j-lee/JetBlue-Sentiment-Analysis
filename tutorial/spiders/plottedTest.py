@@ -48,7 +48,7 @@ app.layout = html.Div([
                 html.P("A graph here would be nice!")
             ])
         ]),
-        
+
     ],
         style={
         'fontFamily': 'system-ui'

@@ -55,7 +55,7 @@ for i in negrev.items():
 for i in posrev.items():
     if i[1]>=len(posrev)**0.35 and (negrev.get(i[0])==None or negrev.get(i[0])<len(negrev)**0.30):
         posbag.append(i[0])
-
+print(posbag,negbag)
 date=[]
 reviews=[]
 with open('test-cases.csv') as csv_file:
