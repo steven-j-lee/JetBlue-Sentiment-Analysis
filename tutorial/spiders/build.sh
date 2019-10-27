@@ -1,5 +1,6 @@
 #/bin/sh
 
+mv plottedTest.py ..
 mv filereader.py ..
 mv filechanger.py ..
 rm aquote.json
@@ -9,4 +10,3 @@ echo $(date --rfc-3339=seconds | cut -d- -f1-3) > lastupdate
 mv ../filereader.py .
 python3 filereader.py
 mv filereader.py ..
-
