@@ -1,0 +1,50 @@
+
+body {
+  font-family: 'Staatliches', cursive;
+  background: #F5F5F5;
+  animation: fadeInAnimation ease 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+h1{
+  font-size: 75px;
+  margin-top: 50px;
+  margin-left: 165px;
+  margin-right: 165px;
+}
+
+.git{
+  margin-left: 200px;
+  margin-top: 50px;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+     }
+}
+@keyframes blink {50% {
+  color: transparent
+   }
+ }
+ .loader{
+   font-size: 30px;
+    margin-left: 250px;
+    margin-bottom: 200px;
+ }
+
+.loader__dot {
+  animation: 1s blink infinite
+}
+
+.loader__dot1 {
+  animation: 1s blink infinite
+}
+
+.graph_link{
+  margin-left: 200px;
+}
