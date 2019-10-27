@@ -9,16 +9,14 @@ external_stylesheets = ['style.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-df = pd.read_csv('/tutorial/spiders/JetBlue-Data.csv')
-#def generate_table(dataframe, max_rows=1000):
-#    return html.Table(
-#        # Header
-#        [html.Tr([html.Th(col) for col in dataframe.columns])] +
-#        # Body
-#        [html.Tr([
-#            html.Td(dataframe.iloc[i][col]) for col in dataframe.columns
-#        ]) for i in range(min(len(dataframe), max_rows))]
-#    )
+df = pd.read_csv('tutorial/spiders/JetBlue-Data.csv')
+df.head()
+
+def plotter():
+    fig = go.Figure(go.Scatter(x=df['Time'], y = df['Reception'], name = 'Perception'))
+    fig.update_layout(title='JetBlue Reception over Time', plot_bgcolor='rgb(230,230,230)', showlegend = True)
+    fig.show()
+
 
 app.layout = html.Div([
     html.H1( 'JetBrain word frequency',
@@ -28,18 +26,8 @@ app.layout = html.Div([
             html.Div([
                 dcc.Graph(
                     id='plotted-graph',
-                    figure={
-                        'data': [
-                            {'x': [1, 2, 3], 'y': [4, 1, 2],
-                                'type': 'bar', 'name': 'SF'},
-                            {'x': [1, 2, 3], 'y': [2, 4, 5],
-                             'type': 'bar', 'name': u'Montréal'},
-                        ],
-                        'layout': {
-                            'title': 'Dash Data Visualization'
-                        }
-                    }
-                )
+                    figure = plotter()
+                    ),
             ])
         ]),
         dcc.Tab(label='Improved model Visualization', children=[
