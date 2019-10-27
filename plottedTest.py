@@ -9,7 +9,7 @@ external_stylesheets = ['style.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-df = pd.read_csv('quotes.csv')
+df = pd.read_csv('/tutorial/spiders/JetBlue-Data.csv')
 #def generate_table(dataframe, max_rows=1000):
 #    return html.Table(
 #        # Header
@@ -48,7 +48,7 @@ app.layout = html.Div([
                 html.P("A graph here would be nice!")
             ])
         ]),
-        
+
     ],
         style={
         'fontFamily': 'system-ui'
