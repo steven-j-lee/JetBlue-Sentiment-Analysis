@@ -1,5 +1,6 @@
 import json
 import re
+import os
 #from nltk.classify import NaiveBayesClassifier
 #from nltk.sentiment import SentimentAnalyzer
 #from nltk.sentiment.util import *
@@ -16,46 +17,13 @@ negrev={}
 posbag=[]
 negbag=[]
 
-with open('aquote.json', 'r') as json_file:
-    json_data = json.load(json_file)
-
-data_length = len(json_data)
-
-#test for json
-
-for i in range(len(json_data)):
-    y=str(json_data[i])[12]
-    y=y=='y'
-    json_data[i]=str(json_data[i])[26:-2]
-    while True:
-        if str(json_data[i][0])==" " or str(json_data[i][0])=="|" or str(json_data[i][0])=="\"" or str(json_data[i][0])=="\'":
-            json_data[i]=json_data[i][1:]
-        else:
-            break
-    json_data[i]=re.sub(r'[^\w\s]', '', json_data[i])
-    tokens = nltk.word_tokenize(json_data[i])
-    tagged = nltk.pos_tag(tokens)
-    tagged = [str(i[0]).lower() for i in tagged if i[1] in ['JJP', 'JJR', 'JJ']]
-    if y==0:
-        for j in tagged:
-            if negrev.get(j):
-                negrev[j]+=1
-            else:
-                negrev[j]=1
-    else:
-        for j in tagged:
-            if posrev.get(j):
-                posrev[j]+=1
-            else:
-                posrev[j]=1
-
-for i in negrev.items():
-    if i[1]>=len(negrev)**0.35 and (posrev.get(i[0])==None or posrev.get(i[0])<len(posrev)**0.30):
-        negbag.append(i[0])
-for i in posrev.items():
-    if i[1]>=len(posrev)**0.35 and (negrev.get(i[0])==None or negrev.get(i[0])<len(negrev)**0.30):
-        posbag.append(i[0])
-#print(posbag,negbag)
+a=[]
+with open('Wordreview.csv') as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    for row in csv_reader:
+        a.append(row)
+    posbag=a[1]
+    negbag=a[0]
 
 date=[]
 reviews=[]
@@ -142,6 +110,7 @@ for i in negrev.items():
 for i in posrev.items():
     if i[1]>=len(posrev)**0.35 and (negrev.get(i[0])==None or negrev.get(i[0])<len(negrev)**0.30):
         posbag.append(i[0])
+os.remove("Wordreview.csv")
 with open('Wordreview.csv', 'w', newline="") as f:
     writer = csv.writer(f)
     writer.writerow(negbag)
